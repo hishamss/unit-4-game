@@ -35,3 +35,7 @@ img {
 .borderleft-min {
   border-left: 2px solid white !important;
 }
+
+.border-success-min {
+  border: 5px solid #28a745 !important;
+}
