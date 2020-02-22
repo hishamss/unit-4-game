@@ -24,6 +24,12 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.js"
+      integrity="sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI="
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/javascript/game.js"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Monoton&display=swap"
       rel="stylesheet"
@@ -42,48 +48,150 @@
       </header>
       <br />
       <div>
+        <div class="row borderbottom-min pb-2">
+          <div class="col-md-12">
+            <div class="row">
+              <div
+                class="col-md-4 offset-md-4"
+                style="color:white; font-size: 2rem"
+              >
+                Your Charachter
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="card charachter" id="obi-wan">
+                  <div class="card-header">
+                    Obi-Wan Kenobi
+                  </div>
+                  <img class="img-fluid" src="assets/images/obiwan.jpg" />
+                  <div class="card-body">
+                    120
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card charachter" id="luke-skywalker">
+                  <div class="card-header">
+                    Luke Skywalker
+                  </div>
+                  <img
+                    class="img-fluid"
+                    src="assets/images/Luke-Skywalker.jpg"
+                  />
+                  <div class="card-body">
+                    100
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card charachter" id="darth-sidious">
+                  <div class="card-header">
+                    Darth Sidious
+                  </div>
+                  <img
+                    class="img-fluid"
+                    src="assets/images/darth-sidious.jpg"
+                  />
+                  <div class="card-body">
+                    150
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="card charachter" id="darth-maul">
+                  <div class="card-header">
+                    Darth Maul
+                  </div>
+                  <img class="img-fluid" src="assets/images/darth-maul.jpg" />
+                  <div class="card-body">
+                    180
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row">
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-header">
-                Obi-Wan Kenobi
+          <div class="col-md-6 ">
+            <div class="row">
+              <div class="col-md-12" style="color:white; font-size: 2rem">
+                Available Enemies
               </div>
-              <img class="img-fluid" src="assets/images/obiwan.jpg" />
-              <div class="card-body">
-                120
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    Luke Skywalker
+                  </div>
+                  <img
+                    class="img-fluid"
+                    src="assets/images/Luke-Skywalker.jpg"
+                  />
+                  <div class="card-body">
+                    100
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    Luke Skywalker
+                  </div>
+                  <img
+                    class="img-fluid"
+                    src="assets/images/Luke-Skywalker.jpg"
+                  />
+                  <div class="card-body">
+                    100
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-header">
-                Luke Skywalker
+          <div class="col-md-6 borderleft-min">
+            <div class="row">
+              <div class="col-md-6" style="color:white; font-size: 2rem">
+                Defender
               </div>
-              <img class="img-fluid" src="assets/images/Luke-Skywalker.jpg" />
-              <div class="card-body">
-                100
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-header">
-                Darth Sidious
-              </div>
-              <img class="img-fluid" src="assets/images/darth-sidious.jpg" />
-              <div class="card-body">
-                150
+              <div class="col-md-6" style="color:white; font-size: 2rem">
+                Fight Session
               </div>
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="card">
-              <div class="card-header">
-                Darth Maul
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <div class="card-header">
+                    Luke Skywalker
+                  </div>
+                  <img
+                    class="img-fluid"
+                    src="assets/images/Luke-Skywalker.jpg"
+                  />
+                  <div class="card-body">
+                    100
+                  </div>
+                </div>
               </div>
-              <img class="img-fluid" src="assets/images/darth-maul.jpg" />
-              <div class="card-body">
-                180
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-light btn-lg">
+                      Attack
+                    </button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12" style="color:white; font-size: 1.2rem">
+                    You attacked luke for 8 damage.
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12" style="color:white; font-size: 1.2rem">
+                    Luke attacked you for 5 damage.
+                  </div>
+                </div>
               </div>
             </div>
           </div>
