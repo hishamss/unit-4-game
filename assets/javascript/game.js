@@ -13,7 +13,7 @@ $(document).ready(function() {
     }
     $(".charachter-picked").text("");
     var val =
-      '<div class="col-md-3"><div class="card charachter border-success-min" id="' +
+      '<div class="col-md-3 col-centered"><div class="card charachter border-success-min" id="' +
       id +
       '"><div class="card-header">' +
       id +

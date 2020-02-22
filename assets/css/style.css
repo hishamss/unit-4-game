@@ -39,3 +39,8 @@ img {
 .border-success-min {
   border: 5px solid #28a745 !important;
 }
+
+.col-centered {
+  float: none;
+  margin: 0 auto;
+}
