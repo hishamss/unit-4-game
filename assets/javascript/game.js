@@ -6,6 +6,7 @@ $(document).ready(function() {
     ["Darth-Maul"]: ["180", "Darth-Maul.jpg"]
   };
   var Enemies = ["Enemy1", "Enemy2", "Enemy3"];
+  var AvailableEnemies = [];
   $(".charachter").click(function() {
     var id = this.id;
     $(".charachter-picked").text("");
@@ -21,8 +22,10 @@ $(document).ready(function() {
       "</div></div></div>";
     $(".charachter-picked").append(val);
     var count = 0;
+    AvailableEnemies = [];
     for (var enemy in charachters) {
       if (enemy !== id) {
+        AvailableEnemies.push(enemy);
         $("#" + Enemies[count])
           .children(".card-header")
           .text(enemy);
@@ -32,9 +35,22 @@ $(document).ready(function() {
         $("#" + Enemies[count])
           .children(".card-body")
           .text(charachters[enemy][0]);
-        $("#" + Enemies[count]).addClass("border-danger-min ");
+        $("#" + Enemies[count]).addClass("border-danger-min");
         count++;
       }
     }
+    console.log(AvailableEnemies);
+  });
+  $(".Enemies").click(function() {
+    var id = this.id;
+    var val =
+      '<div class="col-md-6" style="color:white; font-size: 2rem">Enemies</div><div class="col-md-3 borderleft-min" style="color:white; font-size: 2rem">Defender</div><div class="col-md-3" style="color:white; font-size: 2rem">Fight Session</div>';
+    $(".header-row").text("");
+    $(".header-row").append(val);
+    $("#" + id).removeClass("border-danger-min");
+    $("#" + id)
+      .parent()
+      .addClass("borderleft-min");
+    $(".attack").removeClass("borderleft-min");
   });
 });
