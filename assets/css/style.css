@@ -17,7 +17,7 @@ header h1 {
 }
 
 .card-header {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .card-body {
@@ -38,6 +38,10 @@ img {
 
 .border-success-min {
   border: 5px solid #28a745 !important;
+}
+
+.border-danger-min {
+  border: 5px solid red !important;
 }
 
 .col-centered {

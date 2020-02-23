@@ -32,6 +32,7 @@ $(document).ready(function() {
         $("#" + Enemies[count])
           .children(".card-body")
           .text(charachters[enemy][0]);
+        $("#" + Enemies[count]).addClass("border-danger-min ");
         count++;
       }
     }
