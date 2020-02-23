@@ -48,3 +48,12 @@ img {
   float: none;
   margin: 0 auto;
 }
+
+.GameOver p {
+  font-size: 10rem;
+  color: white;
+}
+
+#PlayAgain-btn {
+  font-size: 3rem;
+}

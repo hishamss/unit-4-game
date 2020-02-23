@@ -17,6 +17,7 @@ $(document).ready(function() {
   var MyDefender = "";
   var MyDamage = 0;
   var MyDefenderId;
+  $(".GameOver").hide();
   $(".charachter").click(function() {
     var id = this.id;
     MyCharachter = id;
@@ -93,5 +94,14 @@ $(document).ready(function() {
       MyDefender + " Attached You Back For " + Damage[MyDefender] + " Damage"
     );
     MyDamage = MyDamage + Damage[MyCharachter];
+    if (MyScore <= 0) {
+      setTimeout(function() {
+        $(".Game").hide();
+        $(".GameOver").show();
+      }, 1000);
+    }
+  });
+  $("#PlayAgain-btn").click(function() {
+    location.reload(true);
   });
 });
