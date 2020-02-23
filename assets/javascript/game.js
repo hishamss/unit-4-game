@@ -6,9 +6,22 @@ $(document).ready(function() {
     ["Darth-Maul"]: ["180", "Darth-Maul.jpg"]
   };
   var Enemies = ["Enemy1", "Enemy2", "Enemy3"];
-  var AvailableEnemies = [];
+  var Damage = {
+    ["Obi-Wan-Kenobi"]: 8,
+    ["Luke-Skywalker"]: 5,
+    ["Darth-Sidious"]: 20,
+    ["Darth-Maul"]: 25
+  };
+  var MyCharachter = "";
+  var MyScore;
+  var MyDefender = "";
+  var MyDamage = 0;
+  var MyDefenderId;
   $(".charachter").click(function() {
     var id = this.id;
+    MyCharachter = id;
+    MyScore = parseInt(charachters[id][0]);
+    MyDamage = Damage[id];
     $(".charachter-picked").text("");
     var val =
       '<div class="col-md-3 col-centered"><div class="card charachter border-success-min" id="' +
@@ -22,10 +35,8 @@ $(document).ready(function() {
       "</div></div></div>";
     $(".charachter-picked").append(val);
     var count = 0;
-    AvailableEnemies = [];
     for (var enemy in charachters) {
       if (enemy !== id) {
-        AvailableEnemies.push(enemy);
         $("#" + Enemies[count])
           .children(".card-header")
           .text(enemy);
@@ -39,24 +50,48 @@ $(document).ready(function() {
         count++;
       }
     }
-    console.log(AvailableEnemies);
   });
   $(".Enemies").click(function() {
-    var id = this.id;
+    MyDefenderId = this.id;
     var val =
       '<div class="col-md-6" style="color:white; font-size: 2rem">Enemies</div><div class="col-md-3 borderleft-min" style="color:white; font-size: 2rem">Defender</div><div class="col-md-3" style="color:white; font-size: 2rem">Fight Session</div>';
     $(".header-row").text("");
     $(".header-row").append(val);
-    $("#" + id).removeClass("border-danger-min");
-    $("#" + id).css("background", "black");
-    $("#" + id).css("color", "white");
-    $("#" + id)
+    $("#" + MyDefenderId).removeClass("border-danger-min");
+    $("#" + MyDefenderId).css("background", "black");
+    $("#" + MyDefenderId).css("color", "white");
+    $("#" + MyDefenderId)
       .parent()
       .addClass("borderleft-min");
-    $("#" + id)
+    $("#" + MyDefenderId)
       .parent()
       .addClass("order-1");
     $(".attack").removeClass("borderleft-min");
     $(".attack").addClass("order-2");
+    MyDefender = $("#" + MyDefenderId)
+      .children(".card-header")
+      .text();
+    DefenderScore = parseInt(
+      $("#" + MyDefenderId)
+        .children(".card-body")
+        .text()
+    );
+  });
+  $("#attack-btn").click(function() {
+    MyScore = MyScore - Damage[MyDefender];
+    $("#" + MyCharachter)
+      .children(".card-body")
+      .text(MyScore);
+    DefenderScore = DefenderScore - MyDamage;
+    $("#" + MyDefenderId)
+      .children(".card-body")
+      .text(DefenderScore);
+    $("#YourStatus").text(
+      "You Attacked " + MyDefender + " For " + MyDamage + " Damage"
+    );
+    $("#DefenderStatus").text(
+      MyDefender + " Attached You Back For " + Damage[MyDefender] + " Damage"
+    );
+    MyDamage = MyDamage + Damage[MyCharachter];
   });
 });
