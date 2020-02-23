@@ -48,9 +48,15 @@ $(document).ready(function() {
     $(".header-row").text("");
     $(".header-row").append(val);
     $("#" + id).removeClass("border-danger-min");
+    $("#" + id).css("background", "black");
+    $("#" + id).css("color", "white");
     $("#" + id)
       .parent()
       .addClass("borderleft-min");
+    $("#" + id)
+      .parent()
+      .addClass("order-1");
     $(".attack").removeClass("borderleft-min");
+    $(".attack").addClass("order-2");
   });
 });
