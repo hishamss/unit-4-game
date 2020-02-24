@@ -1,25 +1,28 @@
+var charachters = {
+  ["Obi-Wan-Kenobi"]: ["120", "Obi-Wan-Kenobi.jpg"],
+  ["Luke-Skywalker"]: ["100", "Luke-Skywalker.jpg"],
+  ["Darth-Sidious"]: ["150", "Darth-Sidious.jpg"],
+  ["Darth-Maul"]: ["180", "Darth-Maul.jpg"]
+};
+var Enemies = ["Enemy1", "Enemy2", "Enemy3"];
+var Damage = {
+  ["Obi-Wan-Kenobi"]: 8,
+  ["Luke-Skywalker"]: 5,
+  ["Darth-Sidious"]: 20,
+  ["Darth-Maul"]: 25
+};
+var MyCharachter = "";
+var MyScore;
+var MyDefender = "";
+var MyDamage = 0;
+var MyDefenderId;
+var NoEnemy;
+var NoOfDefeatedEnemies;
 $(document).ready(function() {
-  var charachters = {
-    ["Obi-Wan-Kenobi"]: ["120", "Obi-Wan-Kenobi.jpg"],
-    ["Luke-Skywalker"]: ["100", "Luke-Skywalker.jpg"],
-    ["Darth-Sidious"]: ["150", "Darth-Sidious.jpg"],
-    ["Darth-Maul"]: ["180", "Darth-Maul.jpg"]
-  };
-  var Enemies = ["Enemy1", "Enemy2", "Enemy3"];
-  var Damage = {
-    ["Obi-Wan-Kenobi"]: 8,
-    ["Luke-Skywalker"]: 5,
-    ["Darth-Sidious"]: 20,
-    ["Darth-Maul"]: 25
-  };
-  var MyCharachter = "";
-  var MyScore;
-  var MyDefender = "";
-  var MyDamage = 0;
-  var MyDefenderId;
-  var NoEnemy;
   $(".GameOver").hide();
+  $(".Winning").hide();
   $(".charachter").click(function() {
+    NoOfDefeatedEnemies = 0;
     var id = this.id;
     MyCharachter = id;
     MyScore = parseInt(charachters[id][0]);
@@ -55,6 +58,12 @@ $(document).ready(function() {
   });
   $(".Enemies").click(function() {
     NoEnemy = false;
+    $("#YourStatus").text("");
+    $("#DefenderStatus").text("");
+    $("#" + MyDefenderId)
+      .parent()
+      .removeClass("borderleft-min order-1");
+    $("#" + MyDefenderId).remove();
     MyDefenderId = this.id;
     var val =
       '<div class="col-md-6" style="color:white; font-size: 2rem">Enemies</div><div class="col-md-3 borderleft-min" style="color:white; font-size: 2rem">Defender</div><div class="col-md-3" style="color:white; font-size: 2rem">Fight Session</div>';
@@ -104,6 +113,7 @@ $(document).ready(function() {
         }, 1000);
       }
       if (DefenderScore <= 0) {
+        NoOfDefeatedEnemies++;
         NoEnemy = true;
         $("#YourStatus").text(
           "You Have Defeated " +
@@ -114,12 +124,24 @@ $(document).ready(function() {
         setTimeout(function() {
           $("#" + MyDefenderId).hide();
         }, 300);
+        if (NoOfDefeatedEnemies == 3) {
+          $(".Enemies-row").remove();
+          $(".header-row").remove();
+          $(".Winning").show();
+          // $(".header-row").text("");
+          // $(".header-row").removeClass("row");
+          // $(".header-row").append(
+          //   '<p>You Won!!</p><button type="button" class="btn btn-light btn-lg" id="PlayAgain-btn1">Play Again</button>'
+        }
       }
     } else {
       $("#YourStatus").text("No Enemy Here!");
     }
   });
   $("#PlayAgain-btn").click(function() {
+    location.reload(true);
+  });
+  $("#PlayAgain-btn1").click(function() {
     location.reload(true);
   });
 });

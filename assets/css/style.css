@@ -54,6 +54,12 @@ img {
   color: white;
 }
 
-#PlayAgain-btn {
+#PlayAgain-btn,
+#PlayAgain-btn1 {
   font-size: 3rem;
+}
+
+.Winning p {
+  font-size: 10rem;
+  color: white;
 }
