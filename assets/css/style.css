@@ -63,3 +63,21 @@ img {
   font-size: 10rem;
   color: white;
 }
+
+/* @media screen and (min-width: 1200px) {
+  .card-header {
+    font-size: 1.2rem;
+  }
+} */
+
+@media screen and (min-width: 996px) and (max-width: 1199px) {
+  .card-header {
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 995px) {
+  .card-header {
+    font-size: 0.7rem;
+  }
+}
