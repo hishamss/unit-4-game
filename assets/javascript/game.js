@@ -11,12 +11,12 @@ var Damage = {
   ["Darth-Sidious"]: 20,
   ["Darth-Maul"]: 25
 };
-var MyCharachter = "";
+var MyCharachter;
 var MyScore;
 var MyDefender = "";
 var MyDamage = 0;
 var MyDefenderId;
-var NoEnemy;
+var NoEnemy = true;
 var NoOfDefeatedEnemies;
 $(document).ready(function() {
   $(".GameOver").hide();
@@ -57,85 +57,93 @@ $(document).ready(function() {
     }
   });
   $(".Enemies").click(function() {
-    NoEnemy = false;
-    $("#YourStatus").text("");
-    $("#DefenderStatus").text("");
-    $("#" + MyDefenderId)
-      .parent()
-      .removeClass("borderleft-min order-1");
-    $("#" + MyDefenderId).remove();
-    MyDefenderId = this.id;
-    var val =
-      '<div class="col-md-6" style="color:white; font-size: 2rem">Enemies</div><div class="col-md-3 borderleft-min" style="color:white; font-size: 2rem">Defender</div><div class="col-md-3" style="color:white; font-size: 2rem">Fight Session</div>';
-    $(".header-row").text("");
-    $(".header-row").append(val);
-    $("#" + MyDefenderId).removeClass("border-danger-min");
-    $("#" + MyDefenderId).css("background", "black");
-    $("#" + MyDefenderId).css("color", "white");
-    $("#" + MyDefenderId)
-      .parent()
-      .addClass("borderleft-min");
-    $("#" + MyDefenderId)
-      .parent()
-      .addClass("order-1");
-    $(".attack").removeClass("borderleft-min");
-    $(".attack").addClass("order-2");
-    MyDefender = $("#" + MyDefenderId)
-      .children(".card-header")
-      .text();
-    DefenderScore = parseInt(
+    // check if charachter selected first
+    if (MyCharachter !== undefined) {
+      NoEnemy = false;
+      $("#YourStatus").text("");
+      $("#DefenderStatus").text("");
       $("#" + MyDefenderId)
-        .children(".card-body")
-        .text()
-    );
+        .parent()
+        .removeClass("borderleft-min order-1");
+      $("#" + MyDefenderId).remove();
+      MyDefenderId = this.id;
+      var val =
+        '<div class="col-md-6" style="color:white; font-size: 2rem">Enemies</div><div class="col-md-3 borderleft-min" style="color:white; font-size: 2rem">Defender</div><div class="col-md-3" style="color:white; font-size: 2rem">Fight Session</div>';
+      $(".header-row").text("");
+      $(".header-row").append(val);
+      $("#" + MyDefenderId).removeClass("border-danger-min");
+      $("#" + MyDefenderId).css("background", "black");
+      $("#" + MyDefenderId).css("color", "white");
+      $("#" + MyDefenderId)
+        .parent()
+        .addClass("borderleft-min");
+      $("#" + MyDefenderId)
+        .parent()
+        .addClass("order-1");
+      $(".attack").removeClass("borderleft-min");
+      $(".attack").addClass("order-2");
+      MyDefender = $("#" + MyDefenderId)
+        .children(".card-header")
+        .text();
+      DefenderScore = parseInt(
+        $("#" + MyDefenderId)
+          .children(".card-body")
+          .text()
+      );
+    } else {
+      alert("Please select your charachter first!");
+    }
   });
   $("#attack-btn").click(function() {
-    if (!NoEnemy) {
-      MyScore = MyScore - Damage[MyDefender];
-      $("#" + MyCharachter)
-        .children(".card-body")
-        .text(MyScore);
-      DefenderScore = DefenderScore - MyDamage;
-      $("#" + MyDefenderId)
-        .children(".card-body")
-        .text(DefenderScore);
-      $("#YourStatus").text(
-        "You Attacked " + MyDefender + " For " + MyDamage + " Damage"
-      );
-      $("#DefenderStatus").text(
-        MyDefender + " Attached You Back For " + Damage[MyDefender] + " Damage"
-      );
-      MyDamage = MyDamage + Damage[MyCharachter];
-      if (MyScore <= 0) {
-        setTimeout(function() {
-          $(".Game").hide();
-          $(".GameOver").show();
-        }, 1000);
-      }
-      if (DefenderScore <= 0) {
-        NoOfDefeatedEnemies++;
-        NoEnemy = true;
+    if (MyCharachter !== undefined) {
+      if (!NoEnemy) {
+        MyScore = MyScore - Damage[MyDefender];
+        $("#" + MyCharachter)
+          .children(".card-body")
+          .text(MyScore);
+        DefenderScore = DefenderScore - MyDamage;
+        $("#" + MyDefenderId)
+          .children(".card-body")
+          .text(DefenderScore);
         $("#YourStatus").text(
-          "You Have Defeated " +
-            MyDefender +
-            ", You Can Choose To Fight Another Enemy"
+          "You Attacked " + MyDefender + " For " + MyDamage + " Damage"
         );
-        $("#DefenderStatus").text("");
-        setTimeout(function() {
-          $("#" + MyDefenderId).hide();
-        }, 300);
-        if (NoOfDefeatedEnemies == 3) {
-          $(".Enemies-row").remove();
-          $(".header-row").remove();
-          $(".Winning").show();
-          // $(".header-row").text("");
-          // $(".header-row").removeClass("row");
-          // $(".header-row").append(
-          //   '<p>You Won!!</p><button type="button" class="btn btn-light btn-lg" id="PlayAgain-btn1">Play Again</button>'
+        $("#DefenderStatus").text(
+          MyDefender +
+            " Attached You Back For " +
+            Damage[MyDefender] +
+            " Damage"
+        );
+        MyDamage = MyDamage + Damage[MyCharachter];
+        if (MyScore <= 0) {
+          setTimeout(function() {
+            $(".Game").hide();
+            $(".GameOver").show();
+          }, 1000);
         }
+        if (DefenderScore <= 0) {
+          NoOfDefeatedEnemies++;
+          NoEnemy = true;
+          $("#YourStatus").text(
+            "You Have Defeated " +
+              MyDefender +
+              ", You Can Choose To Fight Another Enemy"
+          );
+          $("#DefenderStatus").text("");
+          setTimeout(function() {
+            $("#" + MyDefenderId).hide();
+          }, 300);
+          if (NoOfDefeatedEnemies == 3) {
+            $(".Enemies-row").remove();
+            $(".header-row").remove();
+            $(".Winning").show();
+          }
+        }
+      } else {
+        $("#YourStatus").text("No Enemy Here!");
       }
     } else {
-      $("#YourStatus").text("No Enemy Here!");
+      alert("Please select your charachter first!");
     }
   });
   $("#PlayAgain-btn").click(function() {
