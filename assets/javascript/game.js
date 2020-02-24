@@ -17,6 +17,7 @@ $(document).ready(function() {
   var MyDefender = "";
   var MyDamage = 0;
   var MyDefenderId;
+  var NoEnemy;
   $(".GameOver").hide();
   $(".charachter").click(function() {
     var id = this.id;
@@ -53,6 +54,7 @@ $(document).ready(function() {
     }
   });
   $(".Enemies").click(function() {
+    NoEnemy = false;
     MyDefenderId = this.id;
     var val =
       '<div class="col-md-6" style="color:white; font-size: 2rem">Enemies</div><div class="col-md-3 borderleft-min" style="color:white; font-size: 2rem">Defender</div><div class="col-md-3" style="color:white; font-size: 2rem">Fight Session</div>';
@@ -79,37 +81,42 @@ $(document).ready(function() {
     );
   });
   $("#attack-btn").click(function() {
-    MyScore = MyScore - Damage[MyDefender];
-    $("#" + MyCharachter)
-      .children(".card-body")
-      .text(MyScore);
-    DefenderScore = DefenderScore - MyDamage;
-    $("#" + MyDefenderId)
-      .children(".card-body")
-      .text(DefenderScore);
-    $("#YourStatus").text(
-      "You Attacked " + MyDefender + " For " + MyDamage + " Damage"
-    );
-    $("#DefenderStatus").text(
-      MyDefender + " Attached You Back For " + Damage[MyDefender] + " Damage"
-    );
-    MyDamage = MyDamage + Damage[MyCharachter];
-    if (MyScore <= 0) {
-      setTimeout(function() {
-        $(".Game").hide();
-        $(".GameOver").show();
-      }, 1000);
-    }
-    if (DefenderScore <= 0) {
+    if (!NoEnemy) {
+      MyScore = MyScore - Damage[MyDefender];
+      $("#" + MyCharachter)
+        .children(".card-body")
+        .text(MyScore);
+      DefenderScore = DefenderScore - MyDamage;
+      $("#" + MyDefenderId)
+        .children(".card-body")
+        .text(DefenderScore);
       $("#YourStatus").text(
-        "You Have Defeated " +
-          MyDefender +
-          ", You Can Choose To Fight Another Enemy"
+        "You Attacked " + MyDefender + " For " + MyDamage + " Damage"
       );
-      $("#DefenderStatus").text("");
-      setTimeout(function() {
-        $("#" + MyDefenderId).hide();
-      }, 300);
+      $("#DefenderStatus").text(
+        MyDefender + " Attached You Back For " + Damage[MyDefender] + " Damage"
+      );
+      MyDamage = MyDamage + Damage[MyCharachter];
+      if (MyScore <= 0) {
+        setTimeout(function() {
+          $(".Game").hide();
+          $(".GameOver").show();
+        }, 1000);
+      }
+      if (DefenderScore <= 0) {
+        NoEnemy = true;
+        $("#YourStatus").text(
+          "You Have Defeated " +
+            MyDefender +
+            ", You Can Choose To Fight Another Enemy"
+        );
+        $("#DefenderStatus").text("");
+        setTimeout(function() {
+          $("#" + MyDefenderId).hide();
+        }, 300);
+      }
+    } else {
+      $("#YourStatus").text("No Enemy Here!");
     }
   });
   $("#PlayAgain-btn").click(function() {
