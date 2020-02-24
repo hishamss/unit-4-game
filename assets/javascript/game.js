@@ -100,6 +100,17 @@ $(document).ready(function() {
         $(".GameOver").show();
       }, 1000);
     }
+    if (DefenderScore <= 0) {
+      $("#YourStatus").text(
+        "You Have Defeated " +
+          MyDefender +
+          ", You Can Choose To Fight Another Enemy"
+      );
+      $("#DefenderStatus").text("");
+      setTimeout(function() {
+        $("#" + MyDefenderId).hide();
+      }, 300);
+    }
   });
   $("#PlayAgain-btn").click(function() {
     location.reload(true);
