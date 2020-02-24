@@ -58,7 +58,7 @@ $(document).ready(function() {
   });
   $(".Enemies").click(function() {
     // check if charachter selected first
-    if (MyCharachter !== undefined) {
+    if (MyCharachter !== undefined && NoEnemy) {
       NoEnemy = false;
       $("#YourStatus").text("");
       $("#DefenderStatus").text("");
@@ -91,7 +91,11 @@ $(document).ready(function() {
           .text()
       );
     } else {
-      alert("Please select your charachter first!");
+      if (MyCharachter === undefined) {
+        alert("Please select your charachter first!");
+      } else {
+        alert("Defender is already selected!");
+      }
     }
   });
   $("#attack-btn").click(function() {
