@@ -1,4 +1,4 @@
-//////////////////////////////////////////////////////////////Star Wars RPG //////////////////////////////////////////////////////////////
+                                                            Star Wars RPG
 
 1. the user has to pick one of the 4 charachters.
    ![charachters](assets/images/step1.jpg)
