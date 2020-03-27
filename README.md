@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 //////////////////////////////////////////////////////////////
 /////////////////////// Star Wars RPG ////////////////////////
 //////////////////////////////////////////////////////////////
 Link: https://hishamss.github.io/unit-4-game/
-=======
-                                                            Star Wars RPG
->>>>>>> 8a39a3b7124ea868fad5ec6220726730300ac164
 
 1. the user has to pick one of the 4 charachters.
    ![charachters](assets/images/step1.jpg)
